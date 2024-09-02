@@ -7,6 +7,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @AllArgsConstructor
 @RestController
 @RequestMapping("/api/products")
@@ -24,5 +26,24 @@ public class ProductController {
     public ResponseEntity<ProductDTO> getProductById(@PathVariable("id") Long productId) {
         ProductDTO productDTO = productService.getProductById(productId);
         return ResponseEntity.ok(productDTO);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<ProductDTO>> getAllProducts() {
+        List<ProductDTO> products = productService.getAllProducts();
+        return ResponseEntity.ok(products);
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<ProductDTO> updateProduct(@PathVariable("id") Long productId,
+                                                    @RequestBody ProductDTO updatedProduct) {
+        ProductDTO productDTO = productService.updateProduct(productId, updatedProduct);
+        return ResponseEntity.ok(productDTO);
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<String> deleteProduct(@PathVariable("id") Long productId) {
+        productService.deleteProduct(productId);
+        return ResponseEntity.ok("Product deleted successfully");
     }
 }
