@@ -24,7 +24,7 @@ public class Product {
     @Column(nullable = false)
     private String description;
 
-//    @ManyToOne(cascade = CascadeType.ALL)
-//    @JoinColumn(name = "category_id")
-//    private Category category;
+    @ManyToOne(targetEntity = Category.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "category_id")
+    private Category category;
 }

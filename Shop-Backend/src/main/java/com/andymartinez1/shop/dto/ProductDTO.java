@@ -1,5 +1,6 @@
 package com.andymartinez1.shop.dto;
 
+import com.andymartinez1.shop.entity.Category;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,4 +16,5 @@ public class ProductDTO {
     private Double price;
     private int inventory;
     private String description;
+    private Category category;
 }

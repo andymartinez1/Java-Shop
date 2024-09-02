@@ -1,10 +1,13 @@
 package com.andymartinez1.shop.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -14,10 +17,15 @@ import lombok.Setter;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-    @Column(nullable = false, unique = true)
+    private Long id;
+    @Column(nullable = false)
     private String name;
 
-//    @OneToMany(mappedBy = "category")
-//    private List<Product> products;
+    @JsonIgnore
+    @OneToMany(mappedBy = "category")
+    private List<Product> products;
+
+    public Category(String name) {
+        this.name = name;
+    }
 }
